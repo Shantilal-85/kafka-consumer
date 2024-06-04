@@ -1,26 +1,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
+    <groupId>com.kafka</groupId>
     <artifactId>KafkaConsumer</artifactId>
     <version>1.0-SNAPSHOT</version>
+    
+    <properties>
+        <slf4j.version>1.7.32</slf4j.version>
+    </properties>
+    
     <dependencies>
+        <!-- Kafka dependency -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>3.0.0</version>
         </dependency>
+        
+        <!-- SLF4J Simple binding -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
     </dependencies>
+    
     <build>
         <plugins>
+            <!-- Maven exec plugin for running Java classes -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
-                <configuration>
-                    <mainClass>com.consumer.KafkaMessageConsumer</mainClass>
-                </configuration>
+                <executions>
+                    <!-- Configuration for running ProducerExample -->
+                    <execution>
+                        <id>run-producer</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.kafka.producer.ProducerExample</mainClass>
+                        </configuration>
+                    </execution>
+                    <!-- Configuration for running ConsumerExample -->
+                    <execution>
+                        <id>run-consumer</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.kafka.consumer.KafkaMessageConsumer</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
