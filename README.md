@@ -1,7 +1,7 @@
 # kafka
 
 * Start with kafka
--> Make sure we have installed the kafka.
+-> Make sure we have installed the kafka and java
 -> Start the zookeeper
 -> start the kafka
 -> create topic with partition(ex- zoro)
